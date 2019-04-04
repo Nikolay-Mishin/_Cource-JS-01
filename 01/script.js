@@ -3,6 +3,7 @@ Array.prototype.unset = function (value) {
     if (this.indexOf (value) != -1)
         this.splice (this.indexOf (value), 1);
 };
+
 // Метод для клонирования объектов
 Object.prototype.clone = function () {
     let o = this;
@@ -22,7 +23,7 @@ function Person () {
     keys.forEach (key => this[key] = args[key]); // Для каждого ключа определяем свойство и значение (из переданных аргументов)
     keys.unset ('titles'); // Удаляем по значению лишнее имя ключа для дальнейшей работыы с ними
 
-    let border = 'padding: 0 0 2px 4px; border-bottom: 2px dashed; border-left: 2px dashed;';
+    let border = 'padding: 0 0 2px 5px; border-bottom: 2px dashed; border-left: 2px dashed;';
     let colors = ['color: purple', 'color: grey', 'color: orange', 'color: green', 'color: red']; // Список цветов для стилизации заголовков
     // Список стилей для приветственного сообщения
     let style = ['color: white', 'font: 1.3rem/3 Georgia', 'text-shadow: 0 2px orangered',
