@@ -4,17 +4,6 @@ Array.prototype.unset = function (value) {
         this.splice (this.indexOf (value), 1);
 };
 
-// Метод для клонирования объектов
-Object.prototype.clone = function () {
-    let o = this;
-    function Create (i) {
-        for (i in o)
-            if (o.hasOwnProperty (i))
-                this[i] = o[i];
-    }
-    return new Create();
-};
-
 // Конструктор студента
 function Person () {
     let args = arguments[0]; // Список полученных аргументов
@@ -47,11 +36,17 @@ students.nikolay = new Person ({
 students.maria = new Person ({
     name: 'Мария', age: '25 лет', place: 'Россия, Санкт-Петербург', skills: 'HTML, CSS, 3dsMax, Unity', goals: 'JS, PHP', titles: titles});
 
-let table = students.clone(); // Создаем копию студентов для создания сводной таблицы (и очистки от лишних параметров)
-// Вызываем в цикле метод say_hello() и удаляем свойство метода из списка ключей перед выводом сводной таблицы
-for (let student of Object.keys (table)) {
-    students[student].say_hello();
+let table = Object.assign ({}, students); // Создаем копию студентов для создания сводной таблицы (и очистки от лишних параметров)
+let style = 'background: yellow; border: 2px dotted red; padding: 3px;';
+console.log ('%cТаблица студентов', style);
+console.table (students); // Выводим таблицу студентов
+// Вызываем в цикле метод say_hello() и удаляем свойства и методы из списка ключей перед выводом сводной таблицы
+for (let student in table) {
+    table[student].say_hello();
     delete table[student].say_hello;
     delete table[student].titles;
 }
-console.table (table); // Выводим таблицу
+console.log ('%cКлон студентов', style);
+console.table (table); // Выводим таблицу Клона студентов
+console.log ('%cОригинал студентов', style);
+console.table (students); // Выводим таблицу студентов
