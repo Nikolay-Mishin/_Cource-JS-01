@@ -3,7 +3,10 @@
  * Загрузка картинки из формы
  * @see http://denisyuk.by/all/polnoe-rukovodstvo-po-zagruzke-izobrazheniy-na-php/
  */
-class Int {
+class Inted {
+    
+}
+interface Abs {
     
 }
 #region

@@ -1,3 +1,27 @@
+// Метод для клонирования объекта
+Object.clone_full = function clone(o, copyProto, copyNested){
+   function Create(i){
+        for(i in o){
+          if(o.hasOwnProperty(i)) this[i] = ( copyNested && typeof o[i] == "object" ) 
+             ? clone(o[i], true, true) : o[i];
+        }
+   }
+   if(copyProto && "__proto__" in o) Create.prototype = o.__proto__; //IE затупит
+   return new Create();
+}
+
+// Метод для клонирования объекта
+Object.clone_full = function clone(o, copyProto, copyNested){
+   function Create(i){
+        for(i in o){
+          if(o.hasOwnProperty(i)) this[i] = ( copyNested && typeof o[i] == "object" ) 
+             ? clone(o[i], true, true) : o[i];
+        }
+   }
+   if(copyProto && "__proto__" in o) Create.prototype = o.__proto__; //IE затупит
+   return new Create();
+}
+
 // Метод для удаления значения массива по ключу
 Array.prototype.unset = function (value) {
     if (this.indexOf (value) != -1)
