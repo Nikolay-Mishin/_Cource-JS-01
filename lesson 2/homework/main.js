@@ -13,9 +13,7 @@ function msg (n, text) {
 function exercise_1 (min = -100, max = 100) {
     for (let x = min; x < max; x++) {
         for (let y = min; y < max; y++) {
-            if (x * y == (2 * x + 5 * y)) {
-                return `x = ${x}, y = ${y}`;
-            };
+            if (x * y == (2 * x + 5 * y)) { return `x = ${x}, y = ${y}`; };
         }
     }
 }
@@ -24,7 +22,7 @@ function exercise_1 (min = -100, max = 100) {
 
 Отредактировать код из примера 2.03 так чтобы в финальном сообщение выводилось с какой попытки игрок угадал число. */ 
 
-function exercise_2 (min = 1, max = 100, hops = 5) {
+function exercise_2 (min = 1, max = 100, hops = 2) {
     const MIN = min;
     const MAX = max;
     const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
@@ -132,15 +130,7 @@ function exercise_5 () {
 В JavaScript есть шаблонные строки. Переписать все строки в примере 2.03 в шаблонные. 
 https://developer.mozilla.org/ru/docs/Web/JavaScript/.. */
 
-
-
-/* #7 (**) 
-
-Переписать код из примеров 2.03 и 2.07 с использование while и do while. 
-https://developer.mozilla.org/ru/docs/Web/JavaScript/..
-https://developer.mozilla.org/ru/docs/Web/JavaScript/.. */
-
-function exercise_7_1 (min = 1, max = 100, hops = 5) {
+function exercise_6 (min = 1, max = 100, hops = 2) {
     const MIN = min;
     const MAX = max;
     const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
@@ -149,7 +139,7 @@ function exercise_7_1 (min = 1, max = 100, hops = 5) {
     let greeting = '';
 
     greeting += 'Сыграем в игру "Угадай число"!\n';
-    greeting += 'Я загадал число от ' + MIN + ' до ' + MAX + '. У тебя есть ' + HOPS + ' попыток его отгадать.\n';
+    greeting += `Я загадал число от ${MIN} до ${MAX} . У тебя есть ${HOPS} попыток его отгадать.\n`;
     greeting += 'Причем после каждой попытки я буду давать тебе подсказку.\n';
 
     alert (greeting);
@@ -157,7 +147,64 @@ function exercise_7_1 (min = 1, max = 100, hops = 5) {
     let isWin = false;
     let hint = '';
 
-    exercise_2.count = 0; // номер попытки по умолчанию
+    exercise_6.count = 0; // номер попытки по умолчанию
+
+    for (let i = 0; i < HOPS; i++) {
+        let message = `Твоя ${i + 1} попытка. Твое число:`;
+
+        if (hint) { message = hint + message; }
+
+        const answer = parseInt (prompt (message));
+        exercise_6.count++; // прибавляем номер попытки на +1 после ответа
+
+        if (answer === NUMBER) {
+            isWin = true;
+            break;
+        }
+        else if (answer > NUMBER) {
+            hint = `Задуманное число меньше ${answer}\n`;
+            continue;
+        }
+        else {
+            hint = `Задуманное число больше ${answer}\n`;
+            continue;
+        }
+    }
+
+    if (isWin) {
+        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nЧисло попыток: ${exercise_6.count}`;
+        msg (6, message);
+    }
+    else {
+        const message = `Увы! Загаданное число было ${NUMBER}. В следующий раз сыграешь лучше.`;
+        msg (6, message);
+    }
+}
+
+/* #7 (**) 
+
+Переписать код из примеров 2.03 и 2.07 с использование while и do while. 
+https://developer.mozilla.org/ru/docs/Web/JavaScript/..
+https://developer.mozilla.org/ru/docs/Web/JavaScript/.. */
+
+function exercise_7_1 (min = 1, max = 100, hops = 2) {
+    const MIN = min;
+    const MAX = max;
+    const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
+    const HOPS = hops;
+
+    let greeting = '';
+
+    greeting += 'Сыграем в игру "Угадай число"!\n';
+    greeting += `Я загадал число от ${MIN} до ${MAX} . У тебя есть ${HOPS} попыток его отгадать.\n`;
+    greeting += 'Причем после каждой попытки я буду давать тебе подсказку.\n';
+
+    alert (greeting);
+
+    let isWin = false;
+    let hint = '';
+
+    exercise_7_1.count = 0; // номер попытки по умолчанию
 
     let i = 0;
     while (i < HOPS) {
@@ -166,7 +213,7 @@ function exercise_7_1 (min = 1, max = 100, hops = 5) {
         if (hint) { message = hint + message; }
 
         const answer = parseInt (prompt (message));
-        exercise_2.count++; // прибавляем номер попытки на +1 после ответа
+        exercise_7_1.count++; // прибавляем номер попытки на +1 после ответа
         i++;
 
         if (answer === NUMBER) {
@@ -174,22 +221,75 @@ function exercise_7_1 (min = 1, max = 100, hops = 5) {
             break;
         }
         else if (answer > NUMBER) {
-            hint = 'Задуманное число меньше ' + answer + '\n';
+            hint = `Задуманное число меньше ${answer}\n`;
             continue;
         }
         else {
-            hint = 'Задуманное число больше ' + answer + '\n';
+            hint = `Задуманное число больше ${answer}\n`;
             continue;
         }
     }
 
     if (isWin) {
-        const message = 'Мои поздравления! Ты угадал задуманное ' + NUMBER + ' число.\n' + 'Число попыток: ' + exercise_2.count;
+        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nЧисло попыток: ${exercise_7_1.count}`;
         msg ('7_1', message);
     }
     else {
-        const message = 'Увы! Загаданное число было ' + NUMBER + '. В следующий раз сыграешь лучше.';
+        const message = `Увы! Загаданное число было ${NUMBER}. В следующий раз сыграешь лучше.`;
         msg ('7_1', message);
+    }
+}
+
+function exercise_7_1_do (min = 1, max = 100, hops = 5) {
+    const MIN = min;
+    const MAX = max;
+    const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
+    const HOPS = hops;
+
+    let greeting = '';
+
+    greeting += 'Сыграем в игру "Угадай число"!\n';
+    greeting += `Я загадал число от ${MIN} до ${MAX} . У тебя есть ${HOPS} попыток его отгадать.\n`;
+    greeting += 'Причем после каждой попытки я буду давать тебе подсказку.\n';
+
+    alert (greeting);
+
+    let isWin = false;
+    let hint = '';
+
+    exercise_7_1_do.count = 0; // номер попытки по умолчанию
+
+    let i = 0;
+    do {
+        let message = 'Твоя ' + (i + 1) + ' попытка. Твое число:';
+
+        if (hint) { message = hint + message; }
+
+        const answer = parseInt (prompt (message));
+        exercise_7_1_do.count++; // прибавляем номер попытки на +1 после ответа
+        i++;
+
+        if (answer === NUMBER) {
+            isWin = true;
+            break;
+        }
+        else if (answer > NUMBER) {
+            hint = `Задуманное число меньше ${answer}\n`;
+            continue;
+        }
+        else {
+            hint = `Задуманное число больше ${answer}\n`;
+            continue;
+        }
+    } while (i < HOPS);
+
+    if (isWin) {
+        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nЧисло попыток: ${exercise_7_1_do.count}`;
+        msg ('7_1_do', message);
+    }
+    else {
+        const message = `Увы! Загаданное число было ${NUMBER}. В следующий раз сыграешь лучше.`;
+        msg ('7_1_do', message);
     }
 }
 
@@ -204,65 +304,12 @@ function exercise_7_2 (min = -10, max = 10) {
                 const mul = a * b * c; // multiplication = умножение
                 const sum = max * (Math.abs (a) + Math.abs (b) + Math.abs (c));
                 // Если произведение числе больше чем 10 сумм абсолютных величин и хотя бы одна из величин отрицательная
-                if (mul > sum && (a < 0 || b < 0 || c < 0)) { msg ('7_2', '' + a + b + c); }
+                if (mul > sum && (a < 0 || b < 0 || c < 0)) { msg ('7_2', `a = ${a}, b = ${b}, c = ${c}`); }
                 c++;
             }
             b++;
         }
         a++;
-    }
-}
-
-function exercise_7_1_do (min = 1, max = 100, hops = 5) {
-    const MIN = min;
-    const MAX = max;
-    const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
-    const HOPS = hops;
-
-    let greeting = '';
-
-    greeting += 'Сыграем в игру "Угадай число"!\n';
-    greeting += 'Я загадал число от ' + MIN + ' до ' + MAX + '. У тебя есть ' + HOPS + ' попыток его отгадать.\n';
-    greeting += 'Причем после каждой попытки я буду давать тебе подсказку.\n';
-
-    alert (greeting);
-
-    let isWin = false;
-    let hint = '';
-
-    exercise_2.count = 0; // номер попытки по умолчанию
-
-    let i = 0;
-    do {
-        let message = 'Твоя ' + (i + 1) + ' попытка. Твое число:';
-
-        if (hint) { message = hint + message; }
-
-        const answer = parseInt (prompt (message));
-        exercise_2.count++; // прибавляем номер попытки на +1 после ответа
-        i++;
-
-        if (answer === NUMBER) {
-            isWin = true;
-            break;
-        }
-        else if (answer > NUMBER) {
-            hint = 'Задуманное число меньше ' + answer + '\n';
-            continue;
-        }
-        else {
-            hint = 'Задуманное число больше ' + answer + '\n';
-            continue;
-        }
-    } while (i < HOPS);
-
-    if (isWin) {
-        const message = 'Мои поздравления! Ты угадал задуманное ' + NUMBER + ' число.\n' + 'Число попыток: ' + exercise_2.count;
-        msg ('7_1_do', message);
-    }
-    else {
-        const message = 'Увы! Загаданное число было ' + NUMBER + '. В следующий раз сыграешь лучше.';
-        msg ('7_1_do', message);
     }
 }
 
@@ -277,7 +324,7 @@ function exercise_7_2_do (min = -10, max = 10) {
                 const mul = a * b * c; // multiplication = умножение
                 const sum = max * (Math.abs (a) + Math.abs (b) + Math.abs (c));
                 // Если произведение числе больше чем 10 сумм абсолютных величин и хотя бы одна из величин отрицательная
-                if (mul > sum && (a < 0 || b < 0 || c < 0)) { msg ('7_2_do', '' + a + b + c); }
+                if (mul > sum && (a < 0 || b < 0 || c < 0)) { msg ('7_2_do', `a = ${a}, b = ${b}, c = ${c}`); }
                 c++;
             } while (c <= max);
             b++;
