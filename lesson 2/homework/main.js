@@ -1,0 +1,182 @@
+function msg (n, text) {
+    console.log (`===== | Задание № ${n} | =====`);
+    console.log (text);
+    console.log ('');
+}
+
+/* №1 (*) 
+
+С помощью двойного вложенного цикла найти все решения уравнения x*y = 2*x + 5*y, при x, y от -100 до 100 
+
+(смотри пример 2.07)  */
+
+function exercise_1 (min = -100, max = 100) {
+    for (let x = min; x < max; x++) {
+        for (let y = min; y < max; y++) {
+            if (x * y == (2 * x + 5 * y)) {
+                return `x = ${x}, y = ${y}`;
+            };
+        }
+    }
+}
+
+/* №2 (*) 
+
+Отредактировать код из примера 2.03 так чтобы в финальном сообщение выводилось с какой попытки игрок угадал число. */ 
+
+function exercise_2 (min = 1, max = 100, hops = 5) {
+    const MIN = min;
+    const MAX = max;
+    const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
+    const HOPS = hops;
+
+    let greeting = '';
+
+    greeting += 'Сыграем в игру "Угадай число"!\n';
+    greeting += 'Я загадал число от ' + MIN + ' до ' + MAX + '. У тебя есть ' + HOPS + ' попыток его отгадать.\n';
+    greeting += 'Причем после каждой попытки я буду давать тебе подсказку.\n';
+
+    alert (greeting);
+
+    let isWin = false;
+    let hint = '';
+
+    exercise_2.count = 0; // номер попытки по умолчанию
+
+    for (let i = 0; i < HOPS; i++) {
+        let message = 'Твоя ' + (i + 1) + ' попытка. Твое число:';
+
+        if (hint) { message = hint + message; }
+
+        const answer = parseInt (prompt (message));
+        exercise_2.count++; // прибавляем номер попытки на +1 после ответа
+
+        if (answer === NUMBER) {
+            isWin = true;
+            break;
+        }
+        else if (answer > NUMBER) {
+            hint = 'Задуманное число меньше ' + answer + '\n';
+            continue;
+        }
+        else {
+            hint = 'Задуманное число больше ' + answer + '\n';
+            continue;
+        }
+    }
+
+    if (isWin) {
+        const message = 'Мои поздравления! Ты угадал задуманное ' + NUMBER + ' число.\n' + 'Число попыток: ' + exercise_2.count;
+        msg (2, message);
+    }
+    else {
+        const message = 'Увы! Загаданное число было ' + NUMBER + '. В следующий раз сыграешь лучше.';
+        msg (2, message);
+    }
+}
+
+/* №3 (*) 
+
+Написать скрипт с константами SIZE и LENGTH и чтобы скрипт построил елочку по этим константам 
+
+Например при SIZE = 2, LENGTH = 4 
+
+* 
+** 
+*** 
+**** 
+* 
+** 
+*** 
+****  */
+
+function exercise_3 (size = 2, length = 4) {
+    const SIZE = size;
+    const LENGTH = length;
+    let str = '';
+    for (let i = 0; i < SIZE; i++) {
+        for (let j = 0; j < LENGTH; j++) {
+            for (let k = j; k >= 0; k--) { str += '*'; }
+            str += '\n';
+        }
+    }
+    return str;
+}
+
+/* №4 (*) 
+
+Написать скрипт, который запрашивает у пользователя 3 числа и выводит наибольшее из них.  */
+
+function exercise_4 (count = 3) {
+    let n = [];
+    for (let i = 0; i < count; i++) { n.push (parseInt (prompt ('Задание № 4\nНаибольшее из чисел'))); }
+    return Math.max.apply (null, n);
+}
+
+/* #5 (*) 
+
+Написать скрипт, который запрашивает у пользователя число и выводит сумму всех его делителей. 
+https://www.yaklass.ru/p/matematika/6-klass/naturalny.. */
+
+function exercise_5 () {
+    n = parseInt (prompt ('Задание № 5\nВведите число'));
+    let sum = 1;
+    console.log (n);
+    console.log (n % 2);
+    for (let div = 2; n % div == 0; div++) { sum += div; }
+    return sum;
+}
+
+/* №6 (**) 
+
+В JavaScript есть шаблонные строки. Переписать все строки в примере 2.03 в шаблонные. 
+https://developer.mozilla.org/ru/docs/Web/JavaScript/.. */
+
+
+
+/* #7 (**) 
+
+Переписать код из примеров 2.03 и 2.07 с использование while и do while. 
+https://developer.mozilla.org/ru/docs/Web/JavaScript/..
+https://developer.mozilla.org/ru/docs/Web/JavaScript/.. */
+
+
+
+/* №8 (**) 
+
+В примере 2.01 переписать скрипт так чтобы не считать сумму, а найти сумму математически. 
+https://www.yaklass.ru/p/algebra/9-klass/progressii-9.. */
+
+
+
+/* №9 (**) 
+
+Написать скрипт который выводит следующие числа: 
+
+20 19 18 15 16 17 10 9 8 5 6 7 
+
+- с использованием циклов.  */
+
+
+
+/* №10 (***) 
+
+Написать скрипт, который запрашивает у пользователя число и выводит разность произведения нечетных чисел и суммы четных цифр веденного числа. 
+
+Например: 
+
+Вводим: 123123 
+
+Произведение нечетных цифр: a = 1 * 3 * 1 * 3 = 9 
+
+Сумма четных цифр: b = 2 + 2 = 4 
+
+Искомая разность: a - b = 9 - 4 = 5 
+
+Примичание (использовать только циклы и математические операции) */
+
+msg (1, 'Корни уравнения: ' + exercise_1());
+exercise_2();
+msg (3, exercise_3());
+/* msg (4, 'Наибольшее из чисел: ' + exercise_4());
+msg (5, 'Сумма делителей: ' + exercise_5()); */
