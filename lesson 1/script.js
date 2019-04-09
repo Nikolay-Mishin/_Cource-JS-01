@@ -58,6 +58,7 @@ students.maria = new Person ({
 
 let table = Object.assign ({}, students); // Создаем копию студентов для создания сводной таблицы (и очистки от лишних параметров)
 table = Object.clone (students);
+table = students.clone();
 
 let style = 'background: yellow; border: 2px dotted red; padding: 3px;';
 console.log ('%cОригинал студентов', style);
