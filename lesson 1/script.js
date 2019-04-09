@@ -1,26 +1,22 @@
 // Метод для клонирования объекта
-Object.clone_full = function clone(o, copyProto, copyNested){
-   function Create(i){
-        for(i in o){
-          if(o.hasOwnProperty(i)) this[i] = ( copyNested && typeof o[i] == "object" ) 
-             ? clone(o[i], true, true) : o[i];
+Object.clone = function clone (o) {
+    function Create (i) {
+        for (i in o) {
+            if (o.hasOwnProperty (i)) this[i] = o[i];
         }
-   }
-   if(copyProto && "__proto__" in o) Create.prototype = o.__proto__; //IE затупит
-   return new Create();
+    }
+    return new Create();
 }
 
-// Метод для клонирования объекта
-Object.clone_full = function clone(o, copyProto, copyNested){
-   function Create(i){
-        for(i in o){
-          if(o.hasOwnProperty(i)) this[i] = ( copyNested && typeof o[i] == "object" ) 
-             ? clone(o[i], true, true) : o[i];
+/* Object.prototype.clone_obj = function clone () {
+    let o = this;
+    function Create (i) {
+        for (i in o) {
+            if (o.hasOwnProperty (i)) this[i] = o[i];
         }
-   }
-   if(copyProto && "__proto__" in o) Create.prototype = o.__proto__; //IE затупит
-   return new Create();
-}
+    }
+    return new Create();
+} */
 
 // Метод для удаления значения массива по ключу
 Array.prototype.unset = function (value) {
@@ -61,16 +57,22 @@ students.maria = new Person ({
     name: 'Мария', age: '25 лет', place: 'Россия, Санкт-Петербург', skills: 'HTML, CSS, 3dsMax, Unity', goals: 'JS, PHP', titles: titles});
 
 let table = Object.assign ({}, students); // Создаем копию студентов для создания сводной таблицы (и очистки от лишних параметров)
+table = Object.clone (students);
+
 let style = 'background: yellow; border: 2px dotted red; padding: 3px;';
-console.log ('%cТаблица студентов', style);
+console.log ('%cОригинал студентов', style);
 console.table (students); // Выводим таблицу студентов
+console.log ('%cКлон студентов', style);
+console.table (table); // Выводим таблицу Клона студентов
+
 // Вызываем в цикле метод say_hello() и удаляем свойства и методы из списка ключей перед выводом сводной таблицы
 for (let student in table) {
     table[student].say_hello();
     delete table[student].say_hello;
     delete table[student].titles;
 }
-console.log ('%cКлон студентов', style);
-console.table (table); // Выводим таблицу Клона студентов
+
 console.log ('%cОригинал студентов', style);
 console.table (students); // Выводим таблицу студентов
+console.log ('%cКлон студентов', style);
+console.table (table); // Выводим таблицу Клона студентов

@@ -54,17 +54,17 @@ function exercise_2 (min = 1, max = 100, hops = 2) {
             break;
         }
         else if (answer > NUMBER) {
-            hint = 'Задуманное число меньше ' + answer + '\n';
+            hint = 'Задуманное число меньше ' + answer + '.\n';
             continue;
         }
         else {
-            hint = 'Задуманное число больше ' + answer + '\n';
+            hint = 'Задуманное число больше ' + answer + '.\n';
             continue;
         }
     }
 
     if (isWin) {
-        const message = 'Мои поздравления! Ты угадал задуманное ' + NUMBER + ' число.\n' + 'Число попыток: ' + exercise_2.count;
+        const message = 'Мои поздравления! Ты угадал задуманное ' + NUMBER + ' число.\n' + 'Вы угадали с ' + exercise_2.count + ' попытки.';
         msg (2, message);
     }
     else {
@@ -107,7 +107,8 @@ function exercise_3 (size = 2, length = 4) {
 
 function exercise_4 (count = 3) {
     let n = [];
-    for (let i = 0; i < count; i++) { n.push (parseInt (prompt ('Задание № 4\nНаибольшее из чисел'))); }
+    let message = `Задание № 4.\nНаибольшее из ${count} чисел.\nВведите число №`;
+    for (let i = 0; i < count; i++) { n.push (parseInt (prompt (`${message} ${i + 1}.`))); }
     return Math.max.apply (null, n);
 }
 
@@ -117,12 +118,10 @@ function exercise_4 (count = 3) {
 https://www.yaklass.ru/p/matematika/6-klass/naturalny.. */
 
 function exercise_5 () {
-    n = parseInt (prompt ('Задание № 5\nВведите число'));
+    n = parseInt (prompt ('Задание № 5.\nНайти сумму всех делителей числа.\nВведите число.'));
     let sum = 1;
-    console.log (n);
-    console.log (n % 2);
     for (let div = 2; n % div == 0; div++) { sum += div; }
-    return sum;
+    return sum + n;
 }
 
 /* №6 (**) 
@@ -162,17 +161,17 @@ function exercise_6 (min = 1, max = 100, hops = 2) {
             break;
         }
         else if (answer > NUMBER) {
-            hint = `Задуманное число меньше ${answer}\n`;
+            hint = `Задуманное число меньше ${answer}.\n`;
             continue;
         }
         else {
-            hint = `Задуманное число больше ${answer}\n`;
+            hint = `Задуманное число больше ${answer}.\n`;
             continue;
         }
     }
 
     if (isWin) {
-        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nЧисло попыток: ${exercise_6.count}`;
+        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nВы угадали с ${exercise_6.count} попытки.`;
         msg (6, message);
     }
     else {
@@ -221,17 +220,17 @@ function exercise_7_1 (min = 1, max = 100, hops = 2) {
             break;
         }
         else if (answer > NUMBER) {
-            hint = `Задуманное число меньше ${answer}\n`;
+            hint = `Задуманное число меньше ${answer}.\n`;
             continue;
         }
         else {
-            hint = `Задуманное число больше ${answer}\n`;
+            hint = `Задуманное число больше ${answer}.\n`;
             continue;
         }
     }
 
     if (isWin) {
-        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nЧисло попыток: ${exercise_7_1.count}`;
+        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nВы угадали с ${exercise_6.count} попытки.`;
         msg ('7_1', message);
     }
     else {
@@ -240,7 +239,7 @@ function exercise_7_1 (min = 1, max = 100, hops = 2) {
     }
 }
 
-function exercise_7_1_do (min = 1, max = 100, hops = 5) {
+function exercise_7_1_do (min = 1, max = 100, hops = 2) {
     const MIN = min;
     const MAX = max;
     const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
@@ -274,17 +273,17 @@ function exercise_7_1_do (min = 1, max = 100, hops = 5) {
             break;
         }
         else if (answer > NUMBER) {
-            hint = `Задуманное число меньше ${answer}\n`;
+            hint = `Задуманное число меньше ${answer}.\n`;
             continue;
         }
         else {
-            hint = `Задуманное число больше ${answer}\n`;
+            hint = `Задуманное число больше ${answer}.\n`;
             continue;
         }
     } while (i < HOPS);
 
     if (isWin) {
-        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nЧисло попыток: ${exercise_7_1_do.count}`;
+        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nВы угадали с ${exercise_6.count} попытки.`;
         msg ('7_1_do', message);
     }
     else {
@@ -295,42 +294,48 @@ function exercise_7_1_do (min = 1, max = 100, hops = 5) {
 
 function exercise_7_2 (min = -10, max = 10) {
     let a = min;
-    let b = min;
-    let c = min;
+    let result = [];
 
     while (a <= max) {
+        let b = min;
         while (b <= max) {
+            let c = min;
             while (c <= max) {
                 const mul = a * b * c; // multiplication = умножение
                 const sum = max * (Math.abs (a) + Math.abs (b) + Math.abs (c));
                 // Если произведение числе больше чем 10 сумм абсолютных величин и хотя бы одна из величин отрицательная
-                if (mul > sum && (a < 0 || b < 0 || c < 0)) { msg ('7_2', `a = ${a}, b = ${b}, c = ${c}`); }
+                if (mul > sum && (a < 0 || b < 0 || c < 0)) { result.push (`a = ${a}, b = ${b}, c = ${c}`); }
                 c++;
             }
             b++;
         }
         a++;
     }
+
+    return [result];
 }
 
 function exercise_7_2_do (min = -10, max = 10) {
     let a = min;
-    let b = min;
-    let c = min;
+    let result = [];
 
     do {
+        let b = min;
         do {
+            let c = min;
             do {
                 const mul = a * b * c; // multiplication = умножение
                 const sum = max * (Math.abs (a) + Math.abs (b) + Math.abs (c));
                 // Если произведение числе больше чем 10 сумм абсолютных величин и хотя бы одна из величин отрицательная
-                if (mul > sum && (a < 0 || b < 0 || c < 0)) { msg ('7_2_do', `a = ${a}, b = ${b}, c = ${c}`); }
+                if (mul > sum && (a < 0 || b < 0 || c < 0)) { result.push (`a = ${a}, b = ${b}, c = ${c}`); }
                 c++;
             } while (c <= max);
             b++;
         } while (b <= max);
         a++;
     } while (a <= max);
+
+    return [result];
 }
 
 /* №8 (**) 
@@ -338,17 +343,28 @@ function exercise_7_2_do (min = -10, max = 10) {
 В примере 2.01 переписать скрипт так чтобы не считать сумму, а найти сумму математически. 
 https://www.yaklass.ru/p/algebra/9-klass/progressii-9.. */
 
-
+function exercise_8 () {
+    return false;
+}
 
 /* №9 (**) 
 
 Написать скрипт который выводит следующие числа: 
 
-20 19 18 15 16 17 10 9 8 5 6 7 
+20  19  18  15  16  17  10  9   8   5   6   7 
+    -1  -1  -3  +1  +1  -7  -1  -1  -3  +1  +1
 
 - с использованием циклов.  */
 
-
+function exercise_9 (n = 20, count = 7, sequence = [-1, -1, -3, 1, 1, -7]) {
+    let result = [n];
+    for (let i = 0; i < count - 1; i++) {
+        let s = i % sequence.length;
+        n += sequence[s];
+        result.push (n);
+    }
+    return result.join (' ');
+}
 
 /* №10 (***) 
 
@@ -366,10 +382,33 @@ https://www.yaklass.ru/p/algebra/9-klass/progressii-9.. */
 
 Примичание (использовать только циклы и математические операции) */
 
-msg (1, 'Корни уравнения: ' + exercise_1());
-//exercise_2();
+function exercise_10 (n = 123123) {
+    let message = 'Задание № 10.\nНайти разность произведения нечетных чисел и суммы четных цифр веденного числа.\nВведите число.';
+    n = parseInt (prompt (message, n));
+    let split = String (n).split ('');
+    let evens = [];
+    let odds = [];
+    let multy = 1;
+    let sum = 0;
+
+    split.forEach (item => (item % 2) ? evens.push (item) : odds.push (item));
+
+    for (let even of evens) { multy *= even; }
+    for (let odd of odds) { sum += parseInt (odd); }
+
+    return multy - sum;
+}
+
+msg (1, `Корни уравнения: ${exercise_1()}`);
+exercise_2();
 msg (3, exercise_3());
-/* msg (4, 'Наибольшее из чисел: ' + exercise_4());
-msg (5, 'Сумма делителей: ' + exercise_5()); */
-exercise_7_2();
-exercise_7_2_do();
+msg (4, `Наибольшее из чисел: ${exercise_4()}`);
+msg (5, `Сумма делителей: ${exercise_5()}`);
+exercise_6();
+exercise_7_1();
+exercise_7_1_do();
+msg ('7_2', exercise_7_2());
+msg ('7_2_do', exercise_7_2_do());
+msg (8, exercise_8());
+msg (9, exercise_9());
+msg (10, exercise_10());
