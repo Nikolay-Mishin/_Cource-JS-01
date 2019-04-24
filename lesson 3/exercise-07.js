@@ -1,68 +1,21 @@
 function msg (n, text) {
     console.log (`===== | Задание № ${n} | =====`);
     console.log (text);
-    console.log ('');
 }
 
-/* №7 (**) 
+/* №7 (*) 
 
-Переписать код из примеров 2.03 и 2.07 с использование while и do while. 
-https://developer.mozilla.org/ru/docs/Web/JavaScript/..
-https://developer.mozilla.org/ru/docs/Web/JavaScript/.. */
+Даны два массива одинаковой длины (array1, array2). Создать массив arrayIs такой же длины из элементов true/false по следующему правилу: 1. если на позиции N в массивах array1 и array2 один и тот же элемент, то на позиции N массива arrayIs стоит true 2. иначе false 
+ 
+Исходные массивы: const array1 = [3, 5, 5, 2, 4, 4, 5, 3, 3, 5, 5, 1, 1, 2, 1, 1, 5, 1, 3, 3] const array2 = [3, 4, 4, 5, 2, 2, 4, 3, 2, 3, 1, 5, 2, 1, 2, 5, 5, 4, 1, 3] */
 
-// 2.03 - while
+const   array1 = [3, 5, 5, 2, 4, 4, 5, 3, 3, 5, 5, 1, 1, 2, 1, 1, 5, 1, 3, 3], 
+        array2 = [3, 4, 4, 5, 2, 2, 4, 3, 2, 3, 1, 5, 2, 1, 2, 5, 5, 4, 1, 3];
 
-function exercise_7 (min = 1, max = 100, hops = 2) {
-    const MIN = min;
-    const MAX = max;
-    const NUMBER = MIN + Math.floor (Math.random() * (MAX - MIN + 1));
-    const HOPS = hops;
-
-    let greeting = '';
-
-    greeting += 'Сыграем в игру "Угадай число"!\n';
-    greeting += `Я загадал число от ${MIN} до ${MAX} . У тебя есть ${HOPS} попыток его отгадать.\n`;
-    greeting += 'Причем после каждой попытки я буду давать тебе подсказку.\n';
-
-    alert (greeting);
-
-    let isWin = false;
-    let hint = '';
-
-    exercise_7_1.count = 0; // номер попытки по умолчанию
-
-    let i = 0;
-    while (i < HOPS) {
-        let message = 'Твоя ' + (i + 1) + ' попытка. Твое число:';
-
-        if (hint) { message = hint + message; }
-
-        const answer = parseInt (prompt (message));
-        exercise_7_1.count++; // прибавляем номер попытки на +1 после ответа
-        i++;
-
-        if (answer === NUMBER) {
-            isWin = true;
-            break;
-        }
-        else if (answer > NUMBER) {
-            hint = `Задуманное число меньше ${answer}.\n`;
-            continue;
-        }
-        else {
-            hint = `Задуманное число больше ${answer}.\n`;
-            continue;
-        }
-    }
-
-    if (isWin) {
-        const message = `Мои поздравления! Ты угадал задуманное ${NUMBER} число.\nВы угадали с ${exercise_6.count} попытки.`;
-        msg ('7', message);
-    }
-    else {
-        const message = `Увы! Загаданное число было ${NUMBER}. В следующий раз сыграешь лучше.`;
-        msg ('7', message);
-    }
+function exercise_7 () {
+    let arrayIs = [];
+    for (let N = 0; N < array1.length; N++) { arrayIs.push (array1[N] === array2[N] ? true : false); }
+    return arrayIs;
 }
 
-exercise_7();
+msg (7, exercise_7());

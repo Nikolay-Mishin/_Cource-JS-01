@@ -4,32 +4,20 @@ function msg (n, text) {
     console.log ('');
 }
 
-/* №3 (*) 
+/* №3 (*)
 
-Написать скрипт с константами SIZE и LENGTH и чтобы скрипт построил елочку по этим константам 
+  - Написать функцию `getLongest`, принимающую массив строк и возвращающую самую длинную строку из массива.
+  - Совет: используйте `for-of` или `for-in`.
+  - Пример:
 
-Например при SIZE = 2, LENGTH = 4 
+```javascript
+getLongest(['a']) // 'a'
+getLongest(['a', 'b', 'c']) // 'a'
+getLongest(['a', 'b', 'c', 'lol', 'foo', 'bart']) // 'bart'
+``` */
 
-* 
-** 
-*** 
-**** 
-* 
-** 
-*** 
-****  */
-
-function exercise_3 (size = 2, length = 4) {
-    const SIZE = size;
-    const LENGTH = length;
-    let str = '';
-    for (let i = 0; i < SIZE; i++) {
-        for (let j = 0; j < LENGTH; j++) {
-            for (let k = j; k >= 0; k--) { str += '*'; }
-            str += '\n';
-        }
-    }
-    return str;
+function exercise_3 () {
+    //
 }
 
 msg (3, exercise_3());

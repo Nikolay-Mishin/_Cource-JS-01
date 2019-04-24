@@ -1,7 +1,6 @@
 function msg (n, text) {
     console.log (`===== | Задание № ${n} | =====`);
     console.log (text);
-    console.log ('');
 }
 
 /* №3 (*) 

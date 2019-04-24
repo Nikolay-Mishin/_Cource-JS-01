@@ -4,15 +4,22 @@ function msg (n, text) {
     console.log ('');
 }
 
-/* №4 (*) 
+/* №4 (*)
 
-Написать скрипт, который запрашивает у пользователя 3 числа и выводит наибольшее из них.  */
+  - Написать функцию `isTrimed`, принимающую строку и возвращающую `true` если в начале и конце нет пробельных символов. Иначе `false`.
+  - Пример:
 
-function exercise_4 (count = 3) {
-    let n = [];
-    let message = `Задание № 4.\nНаибольшее из ${count} чисел.\nВведите число №`;
-    for (let i = 0; i < count; i++) { n.push (parseInt (prompt (`${message} ${i + 1}.`))); }
-    return Math.max.apply (null, n);
+```javascript
+isTrimed('') // true
+isTrimed(' ') // false
+isTrimed('Hello world') // true
+isTrimed(`Hellow
+world
+`) // false
+``` */
+
+function exercise_4 () {
+    //
 }
 
-msg (4, `Наибольшее из чисел: ${exercise_4()}`);
+msg (4, exercise_4());

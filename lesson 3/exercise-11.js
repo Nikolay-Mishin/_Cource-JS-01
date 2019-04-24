@@ -1,40 +1,16 @@
 function msg (n, text) {
     console.log (`===== | Задание № ${n} | =====`);
     console.log (text);
-    console.log ('');
 }
 
-/* №11 (***) 
+/* №11 (**) 
 
-Написать скрипт, который запрашивает у пользователя число и выводит разность произведения нечетных чисел и суммы четных цифр веденного числа. 
+Написать функцию slice принимающую 3 аргумента: 1. array - массив 2. begin - число 3. end - число , - и выполняющую тоже самое, что и метод slice. */
 
-Например: 
-
-Вводим: 123123 
-
-Произведение нечетных цифр: a = 1 * 3 * 1 * 3 = 9 
-
-Сумма четных цифр: b = 2 + 2 = 4 
-
-Искомая разность: a - b = 9 - 4 = 5 
-
-Примичание (использовать только циклы и математические операции) */
-
-function exercise_11 (n = 123123) {
-    let message = 'Задание № 10.\nНайти разность произведения нечетных чисел и суммы четных цифр веденного числа.\nВведите число.';
-    n = parseInt (prompt (message, n));
-    let split = String (n).split ('');
-    let evens = [];
-    let odds = [];
-    let multy = 1;
-    let sum = 0;
-
-    split.forEach (item => (item % 2) ? evens.push (item) : odds.push (item));
-
-    for (let even of evens) { multy *= even; }
-    for (let odd of odds) { sum += parseInt (odd); }
-
-    return multy - sum;
+function slice (array = [], begin = 0, end = array.length) {
+    let arr = [];
+    for (let i = begin; i < end; i++) { arr.push (array[i]) }
+    return arr;
 }
 
-msg (11, exercise_11());
+msg (11, slice ([1, 2, 3, 4, 5], 1, 3));
