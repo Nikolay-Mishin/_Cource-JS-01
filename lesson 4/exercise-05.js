@@ -14,8 +14,8 @@ sort([5, 4, 1, 3, 0, 2]) // [0, 1, 2, 3, 4, 5]
 sort([100, -100, 0, 200, -200]) // [-200, -100, 0, 100, 200]
 ``` */
 
-function exercise_5 () {
+function sort () {
     //
 }
 
-msg (5, exercise_5());
+msg (5, `${sort ('')}\n${sort (' ')}\n${sort ('Hello world')}`);
