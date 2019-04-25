@@ -19,8 +19,16 @@ console.log(copy) // {name: "Фродо", family: "Бегенс"}
 console.log(copy === obj) // false
 ``` */
 
-function exercise_8 () {
+function getCopy () {
     //
 }
 
-msg (8, exercise_8());
+const obj = {
+    name: 'Фродо',
+    family: 'Бегенс'
+};
+
+const copy = getCopy (obj);
+
+msg (8, copy);
+console.log(copy === obj);

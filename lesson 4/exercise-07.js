@@ -7,10 +7,14 @@ function msg (n, text) {
 
   - Дописать функцию из задания 6 так, чтобы возвращаемый объект имел какие-нибудь методы. */
 
-// 2.03 - while
+function createPerson () {
+    this.name = prompt ('Имя');
+    this.family = prompt ('Фамилия')
 
-function exercise_7 () {
-    //
+    this.say_hello = () => console.log (`Здравствуйте, ${this.name} ${this.family}! Желаю Вам хорошего дня!`);
 }
 
-msg (7, exercise_7());
+const person = new createPerson();
+
+msg (7, person);
+person.say_hello();

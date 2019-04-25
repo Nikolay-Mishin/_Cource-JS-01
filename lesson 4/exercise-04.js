@@ -17,9 +17,7 @@ world
 `) // false
 ``` */
 
-function isTrimed (str) {
-    return str.trim() === str;
-}
+const isTrimed = str => str.trim() === str;
 
 msg (4, `${isTrimed ('')}\n${isTrimed (' ')}\n${isTrimed ('Hello world')}\n${isTrimed (`Hellow
 world

@@ -13,8 +13,19 @@ const person = createPerson() // alert('Имя') alert('Фамилия')...
 console.log(person) // { name: '...', family: '...', /.../ }
 ``` */
 
-function exercise_6 () {
-    //
+function createPerson () {
+    this.name = prompt ('Имя');
+    this.family = prompt ('Фамилия')
 }
 
-msg (6, exercise_6());
+const person = new createPerson();
+
+const createPerson_2 = () => {return {
+    name: prompt ('Имя'),
+    family: prompt ('Фамилия')
+}};
+
+const person_2 = createPerson_2();
+
+msg (6, person);
+console.log (person_2);

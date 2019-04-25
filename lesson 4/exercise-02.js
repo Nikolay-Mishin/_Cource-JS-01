@@ -15,8 +15,6 @@ getRandom(0, 1) // 1
 getRandom(-100, 100) // -57
 ``` */ 
 
-function getRandom (min, max) {
-    return Math.floor (Math.random() * (max - min + 1) + min);
-}
+const getRandom = (min, max) => Math.floor (Math.random() * (max - min + 1) + min);
 
 msg (2, `${getRandom (0, 1)}\n${getRandom (0, 1)}\n${getRandom (-100, 100)}`);
