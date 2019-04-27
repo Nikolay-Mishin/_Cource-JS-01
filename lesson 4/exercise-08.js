@@ -19,8 +19,23 @@ console.log(copy) // {name: "Фродо", family: "Бегенс"}
 console.log(copy === obj) // false
 ``` */
 
-function getCopy () {
-    //
+// Метод для клонирования объекта
+Object.prototype.getCopy = function () {
+    let o = this;
+    function Create (i) {
+        for (i in o) {
+            if (o.hasOwnProperty (i)) this[i] = o[i];
+        }
+    }
+    return new Create();
+}
+
+function getCopy (o) {
+    let obj = {};
+    for (i in o) {
+        if (o.hasOwnProperty (i)) obj[i] = o[i];
+    }
+    return obj;
 }
 
 const obj = {
@@ -29,6 +44,14 @@ const obj = {
 };
 
 const copy = getCopy (obj);
+const copy_2 = obj.getCopy();
 
 msg (8, copy);
-console.log(copy === obj);
+console.log (copy === obj);
+
+msg (8, copy_2);
+console.log (copy_2 === obj);
+
+delete copy_2.family;
+console.log (copy_2);
+console.log (obj);

@@ -25,8 +25,17 @@ functiоn getMаxFrom () {
 }
 ``` */
 
-function exercise_9 (n = 20, count = 7, sequence = [-1, -1, -3, 1, 1, -7]) {
-    //
+// орфографические ошибки в перемнные max и e, а также именах функции getMaxFrom
+
+const max = getMaxFrom (1, 2, 1, 2, 3, 1, 2, 5, 1, 2, 3); // getMаxFrom написано с ошибкой
+
+// function написано с ошибкой
+function getMaxFrom () {
+	let max = arguments[0]; // первый агрумент массива должен начинаться с 0
+
+	[].forEach.call (arguments, e => max = e > max ? e : max); // при выполнении условия должен возвращаться элемент массива аргументов
+
+	return max;
 }
 
-msg (9, exercise_9());
+msg (9, max);
