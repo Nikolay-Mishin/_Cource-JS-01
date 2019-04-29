@@ -9,8 +9,7 @@ function msg (n, text = null) {
  
 Исходная строка: const string = ‘1, 15, 44, -20’ */
 
-const o = {
-    //
-}
+const string = '1, 15, 44, -20';
+const sum = string.split (', ').reduce ((sum, val) => sum += parseInt (val), 0);
 
-msg (18);
+msg (18, sum.toString());

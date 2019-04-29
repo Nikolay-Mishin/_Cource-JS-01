@@ -9,8 +9,15 @@ function msg (n, text = null) {
  
 Исходная строка: const string = ‘привет Этот славный дивный Мир! Я так по Тебе скучал. Когда же мы С тобой виделись в Последний раз?’ */
 
-const o = {
-    //
+const string = 'привет Этот славный дивный Мир! Я так по Тебе скучал. Когда же мы С тобой виделись в Последний раз?';
+
+const arr = string.split (' ');
+
+let new_arr = [];
+
+for (let item of arr){
+	let first_letter = item.slice (0, 1);
+	if (first_letter === first_letter.toUpperCase()) { new_arr.push (item); }
 }
 
-msg (19);
+msg (19, new_arr);

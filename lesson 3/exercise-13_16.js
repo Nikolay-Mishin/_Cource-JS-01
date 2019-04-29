@@ -9,12 +9,12 @@ function msg (n, text = null) {
  
 Выведите приветствия в alert с использованием шаблонных строк и объекта вашей персоны. */
 
-const person = {
-    name: 'Nikolay',
-    family: 'Mishin',
+let person = {
+    name: 'Николай',
+    family: 'Мишин',
     gender: 'male',
-    city: 'Saint-Petersburg',
-    country: 'Russia',
+    city: 'Санкт-Петербург',
+    country: 'Россия',
     age: 25
 }
 
@@ -28,21 +28,22 @@ console.log ('');
 Почему person.car === car ? Почему person === car.owner ? Почему person === person.car.owner ? */
 
 const car = {
-    type: 'sport',
-    picking: 'base',
-    color: 'black gloss',
+    type: 'спорт',
+    picking: 'базовая',
+    color: 'черный глянец',
     wheels: 4,
     headlights: 4,
-    sittings: 2
+    sittings: 2,
+    owner: person
 }
 
-car.owner = person;
 person.car = car;
 
 msg (14, person);
 console.log (car);
-console.log (`person.car === car => ${person.car === car}`);
-console.log (`person === car.owner => ${person === car.owner}`);
+console.log (`person.car === car => ${person.car === car}`); // свойтво person.car является ссылкой на объект car
+console.log (`person === car.owner => ${person === car.owner}`); // свойтво car.owner является ссылкой на объект person
+// свойтво car.owner объекта person является ссылкой на объект car, поэтому свойтво person.car.owner также содержит ссылку на объект person
 console.log (`person === person.car.owner => ${person === person.car.owner}`);
 console.log ('');
 
@@ -54,14 +55,16 @@ console.log ('');
  
 Доработайте скрипт так чтобы поле car было и в объекте person и в объекте user, но чтобы 1. car !== person.car 2. car !== user.car 3. person.car !== user.car */
 
-const user = {};
+delete car.owner;
 
-for (i of Object.keys (person)) {
-    if (person.hasOwnProperty (i)) user[i] = person[i];
-}
+const user = JSON.parse (JSON.stringify (person));
+person = JSON.parse (JSON.stringify (user));
 
 msg (15, user);
 console.log (`person.car === user.car => ${person.car === user.car}`);
+console.log (`car !== person.car => ${car !== person.car}`);
+console.log (`car !== user.car => ${car !== user.car}`);
+console.log (`person.car !== user.car => ${person.car !== user.car}`);
 console.log ('');
 
 /* №16 (*) 
@@ -70,4 +73,23 @@ console.log ('');
  
 Как лучше всего связать объект building и объект person? Как лучше всего связать объект building и объект car? Удалите все ссылки на объекты, кроме ссылки на объект person. */
 
-msg (16, person);
+const building = {
+	floors: '21',
+	address: 'Проспект Просвещения, 31',
+	tenants: 500,
+	parking: 50
+}
+building.main_tenant = person;
+building.parking_access = car;
+
+delete building.parking_access;
+delete building;
+delete person.car;
+delete user.car;
+delete car;
+delete user;
+
+msg (16, building);
+console.log (person);
+console.log (car);
+console.log (user);
