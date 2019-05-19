@@ -1,9 +1,3 @@
-function msg (n, text) {
-    console.log (`===== | Задание № ${n} | =====`);
-    console.log (text);
-    console.log ('');
-}
-
 // https://repl.it/@chl9252/DZ-5-1-3
 // https://repl.it/@Kocherov_M/05-01-03
 
@@ -26,18 +20,32 @@ function msg (n, text) {
 
 class Point {
     constructor (x, y) {
-        this.x = x
-        this.y = y
+        this.x = x;
+        this.y = y;
     }
     
     // Перемещает точку на dx dy по координатной плоскости.
-    moveTo (dx, dy) { /* ... */ }
+    moveTo (dx, dy) {
+    	this.x = this.x + dx;
+    	this.y = this.y + dy;
+    	return this;
+    }
     
     // Возвращается расстояние до точки.
-    distTo (point) { /* ... */ }
+    distTo (point) {
+		return Point.getDistBetween(this, point);
+    }
     
     // Возвращает расстояние между точками pointA и pointB
-    static getDistBetween (pointA, pointB) { /* ... */ }
+    static getDistBetween (pointA, pointB) {
+    	return ((pointA.x - pointB.x)**2 + (pointA.y - pointB.y)**2)**0.5;
+    }
 }
+const pointA = new Point(100, 200);
+const pointB = new Point(150, 150);
 
-msg (1, '');
+console.log(pointA);
+console.log(pointB);
+console.log(pointA.moveTo(10, 20));
+console.log(pointA.distTo(pointB));
+console.log(Point.getDistBetween(pointA, pointB));
