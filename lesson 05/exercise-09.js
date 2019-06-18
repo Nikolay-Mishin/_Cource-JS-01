@@ -1,9 +1,3 @@
-function msg (n, text) {
-    console.log (`===== | Задание № ${n} | =====`);
-    console.log (text);
-    console.log ('');
-}
-
 // https://repl.it/@chl9252/DZ-5-9
 // https://repl.it/@Kocherov_M/05-09
 
@@ -21,8 +15,35 @@ function msg (n, text) {
     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim voluptas architecto nesciunt, ad fugit unde itaque cum ratione quasi vero!</li>
 </ul> */
 
-function exercise_9 (n = 20, count = 7, sequence = [-1, -1, -3, 1, 1, -7]) {
-    //
-}
+const inputElement = document.querySelector('input');
+const ulElement = document.querySelector('ul');
+const buttonElement = document.querySelector('button');
+const ulChild = ulElement.children;
 
-msg (9, exercise_9());
+buttonElement.addEventListener('click', () => {
+	const liElement = document.createElement('li');
+	liElement.innerHTML = inputElement.value;
+	const lengthText = liElement.innerHTML.length;
+
+	for (let i = 0; i <= ulChild.length; i++) {
+		if (ulChild.length === 0) {
+			ulElement.appendChild(liElement);
+			break;
+		} 
+		else if (lengthText <= ulChild[i].innerText.length) {
+			ulElement.insertBefore(liElement, ulChild[i]);
+			break;
+		}
+		else if (lengthText > ulChild[i].innerText.length && ulChild.length === 1) {
+			ulElement.insertBefore(liElement, null);
+			break;
+		}
+		else if (lengthText <= ulChild[i+1].innerText.length && lengthText > ulChild[i].innerText.length) {
+			ulElement.insertBefore(liElement, ulChild[i+1]);
+			break;
+		}
+		else {
+			ulElement.insertBefore(liElement, null);
+		}
+	}
+})

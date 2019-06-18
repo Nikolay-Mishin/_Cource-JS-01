@@ -1,9 +1,3 @@
-function msg (n, text) {
-    console.log (`===== | Задание № ${n} | =====`);
-    console.log (text);
-    console.log ('');
-}
-
 // https://repl.it/@chl9252/DZ-5-5
 // https://repl.it/@Kocherov_M/05-05
 
@@ -13,8 +7,30 @@ function msg (n, text) {
   - Подсказка: использовать `Object.createElement` и `textContent`.
   - В таблице использовать стандартную верстку элементами `table`, `tr`, `td` и `th`. */
 
-function exercise_5 () {
-    //
-}
+const applicationElement = document.getElementById('application');
+const table = document.createElement('table');
+applicationElement.appendChild(table);
 
-msg (5, exercise_5());
+for (let y = 0; y < 10; y++) {
+	const tableRow = document.createElement('tr');
+
+	table.appendChild(tableRow);
+	tableRow.classList.add('row');
+
+	for (let x = 0; x < 10; x++) {
+		let result = x * y;
+
+		if (x === 0) {
+			result = y;
+		}
+		if (y === 0) {
+			result = x;
+		}
+
+		const tableData = document.createElement('td');
+        
+		tableRow.appendChild(tableData);
+		tableData.textContent = result;
+		tableData.classList.add('data');
+	}
+}

@@ -1,9 +1,3 @@
-function msg (n, text) {
-    console.log (`===== | Задание № ${n} | =====`);
-    console.log (text);
-    console.log ('');
-}
-
 // https://repl.it/@chl9252/DZ-5-8
 // https://repl.it/@Kocherov_M/05-08
 
@@ -14,8 +8,15 @@ function msg (n, text) {
     - остальные `li` перенести в `ul` без классов.
   - Подсказа: использовать `querySelectorAll`, `classList.contains` и `insertBefore`. */
 
-function exercise_8 () {
-    //
-}
+const liElement = document.querySelectorAll('li');
+const ulFirst = document.querySelector('ul.first');
+const ul = document.querySelectorAll('ul')[1];
 
-msg (8, exercise_8());
+liElement.forEach(item => {
+	if (item.classList.contains('first')) {
+		ulFirst.insertBefore(item, null);
+	}
+    else {
+		ul.insertBefore(item, null);
+	}
+});

@@ -1,9 +1,3 @@
-function msg (n, text) {
-    console.log (`===== | Задание № ${n} | =====`);
-    console.log (text);
-    console.log ('');
-}
-
 // https://repl.it/@chl9252/DZ-6-3
 // https://repl.it/@Kocherov_M/06-03
 
@@ -12,8 +6,10 @@ function msg (n, text) {
   - Сделайте страничку с живыми часами показывающие точное время.
   - Подсказка: используйте `setInterval` */
 
-function exercise_3 () {
-    //
-}
+const timeDiv = document.querySelector('#time')
+    timeDiv.style = 'font-size: 60px;'
 
-msg (3, exercise_3());
+setInterval(() => {
+    const time = new Date()
+    timeDiv.textContent = `${time.getHours()}:${(time.getMinutes()<10?'0':'')+time.getMinutes()}:${(time.getSeconds()<10?'0':'')+time.getSeconds()}`
+}, 1000)

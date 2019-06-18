@@ -10,7 +10,7 @@
 class Massiv {
     constructor () {
         this.length = arguments.length
-        for (let i=0; i<arguments.length; i++) {
+        for (let i = 0; i < arguments.length; i++) {
             this[i] = arguments[i]
         }
     }
@@ -22,14 +22,14 @@ class Massiv {
     
     join (separator) {
         let str = ''
-        for (let i=0; i< this.length-1; i++) {
+        for (let i = 0; i < this.length - 1; i++) {
             str += this[i] + separator
         }
         return str + this[this.length-1]
     }
 
     find (callback) {
-        for (let i=0; i< this.length; i++) {
+        for (let i = 0; i < this.length; i++) {
             const result = callback(this[i])
             if (result) {
                 return this[i]

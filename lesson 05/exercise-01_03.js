@@ -24,7 +24,7 @@ class Point {
         this.y = y;
     }
     
-    // Перемещает точку на dx dy по координатной плоскости.
+    // Перемещает точку на (dx, dy) по координатной плоскости.
     moveTo (dx, dy) {
     	this.x = this.x + dx;
     	this.y = this.y + dy;
